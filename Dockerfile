@@ -15,7 +15,9 @@ RUN mkdir -p /var/run/mysqld && chown -R mysql:mysql /var/run/mysqld /var/lib/my
 
 ENV APP_KEY=base64:dGhpc2lzYXZlcnlsb25ncmFuZG9ta2V5MTIzNDU2Nzg5MA==
 ENV APP_ENV=production
-ENV APP_DEBUG=false
+ENV APP_DEBUG=true
+ENV LOG_CHANNEL=stderr
+ENV LOG_LEVEL=debug
 ENV APP_URL=https://transrio-1.onrender.com
 ENV DB_CONNECTION=mysql
 ENV DB_HOST=127.0.0.1
