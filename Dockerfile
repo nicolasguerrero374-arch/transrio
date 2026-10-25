@@ -13,7 +13,7 @@ RUN chmod -R 775 storage bootstrap/cache
 
 RUN mkdir -p /var/run/mysqld && chown -R mysql:mysql /var/run/mysqld /var/lib/mysql
 
-ENV APP_KEY=base64:dGhpc2lzYXZlcnlsb25ncmFuZG9ta2V5MTIzNDU2Nzg5MA==
+ENV APP_KEY=base64:MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=
 ENV APP_ENV=production
 ENV APP_DEBUG=true
 ENV LOG_CHANNEL=stderr
