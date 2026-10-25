@@ -26,4 +26,9 @@ ENV DB_DATABASE=transrio
 ENV DB_USERNAME=root
 ENV DB_PASSWORD=
 
-CMD service mariadb start && sleep 3 && mysql -u root -e "CREATE DATABASE IF NOT EXISTS transrio;" && mysql -u root transrio < transrio.sql || true && php artisan config:clear && php artisan serve --host=0.0.0.0 --port=$PORT
+CMD service mariadb start && \
+    sleep 5 && \
+    mysql -u root -e "CREATE DATABASE IF NOT EXISTS transrio; ALTER USER 'root'@'localhost' IDENTIFIED BY '12345678'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION; FLUSH PRIVILEGES;" && \
+    mysql -u root -p12345678 transrio < transrio.sql || true && \
+    php artisan migrate --force || true && \
+    php artisan serve --host 0.0.0.0 --port $PORT
