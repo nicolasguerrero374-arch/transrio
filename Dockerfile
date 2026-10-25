@@ -1,4 +1,4 @@
-FROM php:8.2-cli
+FROM php:8.3-cli
 WORKDIR /app
 RUN apt-get update && apt-get install -y nodejs npm git zip unzip libzip-dev && docker-php-ext-install zip
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
