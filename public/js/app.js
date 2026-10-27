@@ -194,14 +194,14 @@ function crearBotonFlotante() {
     style.innerHTML = `
         .btn-ubicacion-flotante {
             position: absolute;
-            bottom: 20px;
+            bottom: calc(85px + env(safe-area-inset-bottom));
             right: 20px;
             z-index: 1000;
             background: white;
             border: 2px solid #0d6efd;
             border-radius: 50%;
             width: 48px;
-            height: 48px;
+            height: 48px;SS
             display: flex;
             align-items: center;
             justify-content: center;
@@ -210,6 +210,11 @@ function crearBotonFlotante() {
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
         .btn-ubicacion-flotante:active { transform: scale(0.95); }
+        @media (max-width: 768px) {
+        .btn-ubicacion-flotante {
+        bottom: calc(90px + env(safe-area-inset-bottom)) !important;
+        }
+      }
     `;
     document.head.appendChild(style);
 

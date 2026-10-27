@@ -75,7 +75,7 @@
 
 #map {
   width: 100%;
-  height: calc(100vh - 60px) !important;
+  height: calc(100dvh - 60px) !important;
   min-height: 500px;
    margin-top: 60px;
   z-index: 1;
