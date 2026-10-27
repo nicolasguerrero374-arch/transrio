@@ -1,6 +1,6 @@
 FROM php:8.3-cli
 
-RUN apt-get update && apt-get install -y git unzip libzip-dev libpng-dev libonig-dev libxml2-dev libicu-dev mariadb-server && docker-php-ext-install pdo_mysql zip gd intl && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y git unzip libzip-dev libpng-dev libonig-dev libxml2-dev libicu-dev mariadb-server libfreetype6-dev libjpeg62-turbo-dev libwebp-dev && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && docker-php-ext-install pdo_mysql zip gd intl && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY . .
