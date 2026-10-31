@@ -13,7 +13,7 @@
         <div style="padding:15px;">
           <h3 style="margin:0 0 5px 0; color:#0D47A1;">{{ $p->nombre }}</h3>
           <p style="margin:0; color:#666; font-size:13px;">{{ $p->tipo }} - {{ $p->descripcion }}</p>
-          <p style="margin:8px 0 0 0; font-size:12px; color:#888;">🕒 {{ $p->hora_primera }} - {{ $p->hora_ultima }}</p>
+          <p style="margin:8px 0 0; font-size:12px; color:#666;"> 🕒 {{ \Carbon\Carbon::parse($p->hora_primera)->format('g:i A') }} - {{ \Carbon\Carbon::parse($p->hora_ultima)->format('g:i A') }}</p>
           <a href="{{ url('/?parada='.$p->id) }}" style="display:block; margin-top:10px; background:#0D47A1; color:white; text-align:center; padding:8px; border-radius:8px; text-decoration:none; font-size:13px;">Ver en Mapa</a>
         </div>
       </div>
