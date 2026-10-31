@@ -283,7 +283,7 @@ function onUbicacionEncontrada(pos) {
             iconSize: [16, 16],
             iconAnchor: [8, 8]
         });
-        userMarker = L.marker(userLatLng, { icon: blueIcon, zIndexOffset: 1000 }).addTo(map).bindPopup("¡Tú estás aquí mi vida! en Riosucio");
+        userMarker = L.marker(userLatLng, { icon: blueIcon, zIndexOffset: 1000 }).addTo(map).bindPopup("¡Esta es tu ubicación actual!");
         userCircle = L.circle(userLatLng, { radius: accuracy, color: '#0d6efd', fillColor: '#0d6efd', fillOpacity: 0.15, weight: 1 }).addTo(map);
     } else {
         // SE MUEVE SI EL USUARIO SE MUEVE
