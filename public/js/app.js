@@ -158,13 +158,40 @@ function buscarDestino() {
     }
 }
 
-// ---  FILTRO DE TRANSPORTE ---
+// Filtra paradas
+markers.forEach(m => {
+    let tipo = m.paradaData.tipo.toLowerCase();
+    let mostrar = false;
+    if (q === '') {
+        mostrar = true;
+    } else if (q === 'taxi') {
+        mostrar = tipo === 'taxi';
+    } else {
+        mostrar = tipo.includes(q) || q.includes(tipo);
+    }
+    if (mostrar) {
+        m.addTo(map);
+    } else {
+        map.removeLayer(m);
+    }
+});
+
+// --- FILTRO DE TRANSPORTE ---
 function filtrarTransporte() {
     let q = document.getElementById('buscadorTransporte').value.toLowerCase().trim();
 
     // Filtra paradas
     markers.forEach(m => {
-        if (q === '' || m.paradaData.tipo.toLowerCase().includes(q) || q.includes(m.paradaData.tipo.toLowerCase())) {
+        let tipo = m.paradaData.tipo.toLowerCase();
+        let mostrar = false;
+        if (q === '') {
+            mostrar = true;
+        } else if (q === 'taxi') {
+            mostrar = tipo === 'taxi';
+        } else {
+            mostrar = tipo.includes(q) || q.includes(tipo);
+        }
+        if (mostrar) {
             m.addTo(map);
         } else {
             map.removeLayer(m);
@@ -174,7 +201,15 @@ function filtrarTransporte() {
     // Filtra rutas
     rutasLayers.forEach(line => {
         let tipoRuta = (line.rutaData.tipo || line.rutaData.nombre || '').toLowerCase();
-        if (q === '' || tipoRuta.includes(q) || q.includes(tipoRuta)) {
+        let mostrar = false;
+        if (q === '') {
+            mostrar = true;
+        } else if (q === 'taxi') {
+            mostrar = tipoRuta === 'taxi';
+        } else {
+            mostrar = tipoRuta.includes(q) || q.includes(tipoRuta);
+        }
+        if (mostrar) {
             line.addTo(map);
         } else {
             map.removeLayer(line);
