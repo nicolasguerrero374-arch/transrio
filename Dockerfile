@@ -11,7 +11,7 @@ RUN composer install --no-dev --optimize-autoloader
 
 RUN chmod -R 775 storage bootstrap/cache
 
-RUN php artisan storage:link || true
+RUN rm -rf public/storage && php artisan storage:link || true
 
 RUN mkdir -p /var/run/mysqld && chown -R mysql:mysql /var/run/mysqld /var/lib/mysql
 
