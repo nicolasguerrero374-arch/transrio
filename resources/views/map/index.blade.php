@@ -49,6 +49,6 @@
     </p>
   </div>
 </div>
-<script src="{{ asset('js/transrio-entrada.js') }}"></script>S
+<script src="{{ asset('js/transrio-entrada.js') }}"></script>
 @endsection
-s
+
