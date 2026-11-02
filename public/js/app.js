@@ -121,13 +121,12 @@ function a12Horas(hora) {
 }
 
 function mostrarParada(p) {
-    document.getElementById('modalNombre').innerText = p.nombre;
-    document.getElementById('modalFoto').src = p.foto ? '/storage/' + p.foto : 'https://via.placeholder.com/400x300?text=' + p.nombre;
-    document.getElementById('modalRutas').innerText = p.rutas ? p.rutas.map(r => r.nombre).join(', ') : 'Sin asignar';
-    document.getElementById('modalPrimera').innerText = a12Horas(p.hora_primera);
-    document.getElementById('modalUltima').innerText = a12Horas(p.hora_ultima);
-    document.getElementById('modalTotal').innerText = p.rutas ? p.rutas.length : 0;
-    document.getElementById('modalParada').classList.remove('hidden');
+  document.getElementById('modalNombre').innerText = p.nombre;
+  document.getElementById('modalFoto').src = p.foto ? '/storage/' + p.foto : 'https://via.placeholder.com/400x200?text=' + p.nombre;
+  document.getElementById('modalDescripcion').innerText = p.descripcion || 'Punto principal de transporte. Salida de buses, taxis y mototaxis hacia diferentes veredas.';
+  document.getElementById('modalPrimera').innerText = a12Horas(p.hora_primera);
+  document.getElementById('modalUltima').innerText = a12Horas(p.hora_ultima);
+  document.getElementById('modalParada').classList.remove('hidden');
 }
 function cerrarModal() { document.getElementById('modalParada').classList.add('hidden'); }
 
