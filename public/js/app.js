@@ -130,7 +130,6 @@ function mostrarParada(p) {
 }
 function cerrarModal() { document.getElementById('modalParada').classList.add('hidden'); }
 
-// ---  BUSCADOR DE DESTINO ---
 function buscarDestino() {
     let q = document.getElementById('buscadorDestino').value.toLowerCase().trim();
     if (!q) return;
@@ -144,15 +143,41 @@ function buscarDestino() {
         return;
     }
 
-    // 2. Buscar en PARADAS
-    let encontrado = markers.find(m => m.paradaData.nombre.toLowerCase().includes(q) || (m.paradaData.descripcion && m.paradaData.descripcion.toLowerCase().includes(q)));
-    if (encontrado) {
-        map.setView([encontrado.paradaData.lat, encontrado.paradaData.lng], 17);
-        document.getElementById('sugerencia').innerHTML = `Dirígete a <b>${encontrado.paradaData.nombre}</b>. Allí salen hacia <b>${q}</b>`;
+    // 2. Buscar en PARADAS - AHORA CON TODAS LAS OPCIONES
+    let encontrados = markers.filter(m =>
+        m.paradaData.nombre.toLowerCase().includes(q) ||
+        (m.paradaData.descripcion && m.paradaData.descripcion.toLowerCase().includes(q))
+    );
+
+    if (encontrados.length > 0) {
+
+        let nombres = encontrados.map(m => m.paradaData.nombre);
+        let textoParadas = '';
+
+        if (nombres.length === 1) {
+            textoParadas = `<b>${nombres[0]}</b>`;
+            map.setView([encontrados[0].paradaData.lat, encontrados[0].paradaData.lng], 17);
+        } else if (nombres.length === 2) {
+            textoParadas = `<b>${nombres[0]}</b> o al <b>${nombres[1]}</b>`;
+            // Centramos el mapa entre las dos paradas
+            let lats = encontrados.map(e => e.paradaData.lat);
+            let lngs = encontrados.map(e => e.paradaData.lng);
+            map.fitBounds([[Math.min(...lats), Math.min(...lngs)], [Math.max(...lats), Math.max(...lngs)]]).setZoom(16);
+        } else {
+            let ultimo = nombres.pop();
+            textoParadas = `<b>${nombres.join('</b>, <b>')}</b> o a <b>${ultimo}</b>`;
+            let lats = encontrados.map(e => e.paradaData.lat);
+            let lngs = encontrados.map(e => e.paradaData.lng);
+            map.fitBounds([[Math.min(...lats), Math.min(...lngs)], [Math.max(...lats), Math.max(...lngs)]]).setZoom(15);
+        }
+
+        document.getElementById('sugerencia').innerHTML = `Dirígete al ${textoParadas}. Allí salen hacia <b>${q}</b>`;
         document.getElementById('sugerencia').classList.remove('hidden');
-        mostrarParada(encontrado.paradaData);
+        // Mostramos la primera por defecto en el modal
+        mostrarParada(encontrados[0].paradaData);
+        return;
     } else {
-        document.getElementById('sugerencia').innerHTML = `No encontramos directo a <b>${q}</b>, pero ve al <b>terminal</b>, andén 3. Salen buses cada 30 min.`;
+        document.getElementById('sugerencia').innerHTML = `No encontramos rutas directas a  <b>${q}</b>. Te recomendamos ir al  <b>Terminal de Riosucio</b>. Allí te podran dar información de hacia donde vas.`;
         document.getElementById('sugerencia').classList.remove('hidden');
     }
 }
