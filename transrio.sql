@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 31, 2026 at 07:15 PM
+-- Generation Time: Nov 03, 2026 at 08:48 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.30
 
@@ -87,9 +87,14 @@ CREATE TABLE `horarios` (
 INSERT INTO `horarios` (`id`, `ruta_id`, `parada_id`, `hora_apertura`, `hora_cierre`, `hora_salida`, `dias`, `tipo`, `created_at`, `updated_at`) VALUES
 (2, 4, 3, '06:00', '20:00', '07:00', 'Lunes a Viernes', 'Especial', '2026-10-11 19:54:53', '2026-10-25 02:52:25'),
 (3, 4, 3, '05:00', '20:00', '12:15', 'Lunes a Viernes', 'Terminal', '2026-10-16 20:16:06', '2026-10-16 20:16:06'),
-(4, 4, 9, '05:00', '21:00', '05:00', 'Lunes a Viernes', 'Terminal', '2026-10-25 03:00:19', '2026-10-25 03:00:19'),
+(4, 4, 3, '05:00', '21:00', '17:00', 'Lunes a Viernes', 'Terminal', '2026-10-25 03:00:19', '2026-11-04 01:11:09'),
 (5, 6, 7, '06:00', '19:00', '06:00', 'Lunes a Viernes', 'Terminal', '2026-10-31 23:09:57', '2026-10-31 23:09:57'),
-(6, 6, 11, '06:00', '19:00', '06:30', 'Lunes a Viernes', 'Terminal', '2026-10-31 23:11:05', '2026-10-31 23:11:05');
+(6, 6, 11, '06:00', '19:00', '06:30', 'Lunes a Viernes', 'Terminal', '2026-10-31 23:11:05', '2026-10-31 23:11:05'),
+(8, 6, 7, '05:00', '20:00', '06:00', 'Lunes a Viernes', 'Especial', '2026-11-04 01:06:35', '2026-11-04 01:06:35'),
+(9, 6, 11, '05:00', '20:00', '06:30', 'Lunes a Viernes', 'Especial', '2026-11-04 01:07:12', '2026-11-04 01:07:12'),
+(10, 6, 7, '05:00', '20:00', '13:00', 'Lunes a Viernes', 'Especial', '2026-11-04 01:08:05', '2026-11-04 01:08:05'),
+(11, 6, 11, '05:00', '20:00', '13:40', 'Lunes a Viernes', 'Especial', '2026-11-04 01:08:41', '2026-11-04 01:08:41'),
+(12, 9, 3, '05:00', '20:00', '15:15', 'Lunes a Viernes', 'Intermedio', '2026-11-04 01:12:51', '2026-11-04 01:12:51');
 
 -- --------------------------------------------------------
 
@@ -189,7 +194,8 @@ INSERT INTO `numeros_contactos` (`id`, `tipo`, `nombre`, `numero`, `parada_id`, 
 (13, 'taxi', 'Cootransrio (Taxis oficina)', '3116207411', 18, '2026-10-25 04:00:47', '2026-10-25 04:00:47'),
 (14, 'jeep', 'Cootransrio (Bonafont)', '3171390189', 10, '2026-10-25 04:02:41', '2026-10-25 04:02:41'),
 (15, 'jeep', 'Cootransrio (San Lorenzo)', '3171390192', 12, '2026-10-25 04:04:18', '2026-10-25 04:04:18'),
-(16, 'jeep', 'Cootransrio (Salado)', '3171390193', 12, '2026-10-25 04:05:52', '2026-10-25 04:05:52');
+(16, 'jeep', 'Cootransrio (Salado)', '3171390193', 12, '2026-10-25 04:05:52', '2026-10-25 04:05:52'),
+(17, 'mototaxi', 'ServiMoto Villamar', '3206904387', 14, '2026-11-04 01:05:02', '2026-11-04 01:05:02');
 
 -- --------------------------------------------------------
 
@@ -216,24 +222,23 @@ CREATE TABLE `paradas` (
 --
 
 INSERT INTO `paradas` (`id`, `nombre`, `lat`, `lng`, `tipo`, `foto`, `descripcion`, `hora_primera`, `hora_ultima`, `created_at`, `updated_at`) VALUES
-(3, 'Galeria', 5.4214887, -75.7006472, 'jeep', '1792252358_Galeria Image 2026-10-14 at 2.56.39 PM.jpeg', 'Cl. 12 # 8-104, Riosucio, Caldas de aqui salen alas veredas como la iberia, el palal, paneso, la tolda y otras', '07:00', '18:00', '2026-10-02 02:05:25', '2026-10-17 20:52:52'),
-(7, 'Parque La Candelaria', 5.4208120, -75.7022270, 'bus', '1792880042_WhatsApp Image 2026-10-24 at 5.05.40 PM.jpeg', 'De aqui salen para miraflores, supia, sipirra y pueblo viejo', '06:00', '19:00', '2026-10-02 03:09:00', '2026-10-31 23:06:46'),
-(8, 'Multiexpresingruma', 5.4212781, -75.7006164, 'mototaxi', '1793468512_mototaxi- 2026-10-31 at 12.36.28 PM.jpeg', 'Punto de mototaxis frente a Multiexpresingruma', '08:00', '19:00', '2026-10-02 03:16:31', '2026-10-31 22:41:52'),
-(9, 'Terminal de Riosucio', 5.4233230, -75.7050510, 'Terminal', '1792883265_Terminal_59494910-b8a0-400d-89d9-0176a6fcfc0d.jpg', 'Terminal principal de Riosucio, Caldas - Cl. 11 #31 - Servicio de 5am a 9pm y de aqui salen para manizales,bogota,supia,pereira y medellin', '05:00', '21:00', '2026-10-03 21:27:48', '2026-10-31 23:06:09'),
-(10, 'Estanquillo', 5.4196380, -75.7027290, 'bus', NULL, 'Cra. 8 salen para bonafon y otras partes de aqui salen para bonafont', '06:00', '17:00', '2026-10-05 20:53:50', '2026-10-25 20:28:27'),
-(11, 'Reversadero de Buses', 5.4170925, -75.6846569, 'bus', NULL, 'Aqui reversan los buses de Riosucio que van a Miraflores y Sipirra', '06:00', '18:00', '2026-10-05 21:05:31', '2026-10-05 21:05:31'),
-(12, 'La Molienda', 5.4228919, -75.7055965, 'Parada', '1793468387_la-milienda- 2026-10-31 at 12.36.28 PM.jpeg', 'Aqui se hacen Jeeps, mototaxi y buses que se dirijen a san lorenzo y pueblo viejo', '07:00', '19:00', '2026-10-05 21:20:51', '2026-10-31 22:39:51'),
-(13, 'Parada taxis', 5.4197430, -75.7019125, 'taxi', '1792880154_WhatsApp Image 2026-10-24 at 5.05.40 PM (1).jpeg', 'lugar de taxis disponibles', '05:00', '22:00', '2026-10-15 21:37:14', '2026-10-25 03:15:54'),
-(14, 'Piratas', 5.4288030, -75.7016470, 'pirata', NULL, 'la calle no se', '07:50', '17:00', '2026-10-15 21:53:05', '2026-10-17 20:14:07'),
-(15, 'Empresa Multiexpress Ingruma', 5.4216846, -75.7055141, 'mototaxi', NULL, 'cl. 9 #342 Riosucio caldas', '06:00', '20:00', '2026-10-15 22:04:41', '2026-10-15 22:04:41'),
-(16, 'Mototaxi pirata', 5.4277443, -75.7028037, 'pirata', NULL, 'cerca de el hospital san juan de dios', '07:00', '18:00', '2026-10-15 22:08:48', '2026-10-17 20:13:43'),
-(17, 'carros piratas', 5.4215181, -75.7048509, 'pirata', NULL, 'carros piratas dela noche', '19:00', '05:00', '2026-10-15 22:12:54', '2026-10-17 20:14:33'),
-(18, 'Parque San Sebastián', 5.4209300, -75.7039230, 'taxi', '1792880131_WhatsApp Image 2026-10-24 at 5.05.41 PM.jpeg', 'Parque san sebastian', '06:00', '19:00', '2026-10-17 21:05:27', '2026-10-25 03:15:31'),
-(19, 'Multiexpresingruma 2', 5.4186616, -75.7022630, 'mototaxi', '1793468633_WhatsApp Image 2026-10-31 at 12.43.05 PM.jpeg', 'Cra.9 Riosucio caldas hace parte de la empresa multiexpresingruma', '07:00', '19:00', '2026-10-18 19:51:37', '2026-10-31 22:43:53'),
-(20, 'Multiexpresingruma Oficina oro', 5.4216846, -75.7055141, 'mototaxi', NULL, 'Cl.9 ·342 Riosucio Caldas hace parte de multiexpresingruma oficina', '07:00', '19:00', '2026-10-18 19:57:20', '2026-10-18 19:57:20'),
-(21, 'Moto Raton Sipirra', 5.4263440, -75.6907730, 'mototaxi', NULL, 'Estan en el corregimiento de sipirra van a las veredas y destro de riosucio', '06:00', '19:00', '2026-10-25 20:40:20', '2026-10-25 20:40:20'),
-(22, 'Parque La Candelaria Pirata', 5.4208890, -75.7020120, 'pirata', NULL, 'Moto taxis piratas', '08:00', '17:00', '2026-10-25 20:54:36', '2026-10-25 20:58:41'),
-(23, 'mototaxi pirata', 5.4214800, -75.7014820, 'pirata', NULL, 'Mototaxis piratas cerca de la galeria y tiendas cercanas son todo terreno', '20:00', '18:00', '2026-10-25 21:03:05', '2026-10-25 21:04:30');
+(3, 'Galeria', 5.4214887, -75.7006472, 'jeep', '1792252358_Galeria Image 2026-10-14 at 2.56.39 PM.jpeg', 'Cl. 12 # 8-104, Riosucio Caldas. De aquí salen rutas hacia veredas como La Iberia, El Palal, Paneso, La Tolda, Cañamomo y  otras veredas cercanas.', '07:00', '18:00', '2026-10-02 02:05:25', '2026-11-04 01:20:37'),
+(7, 'Parque La Candelaria', 5.4208120, -75.7022270, 'bus', '1792880042_WhatsApp Image 2026-10-24 at 5.05.40 PM.jpeg', 'Parque La Candelaria, Riosucio Caldas. De aquí salen buses hacia Miraflores, Supía, Sipirra y Pueblo Viejo. Servicio desde las 6:00 a. m.', '06:00', '19:00', '2026-10-02 03:09:00', '2026-11-03 23:37:41'),
+(8, 'Multiexpresingruma', 5.4212781, -75.7006164, 'mototaxi', '1793468512_mototaxi- 2026-10-31 at 12.36.28 PM.jpeg', 'Punto de mototaxis frente ala Galeria. Servicio rápido para desplazamientos dentro de Riosucio y veredas cercanas. Se cobra segun el trayecto recorrido', '08:00', '19:00', '2026-10-02 03:16:31', '2026-11-03 23:42:57'),
+(9, 'Terminal de Riosucio', 5.4233230, -75.7050510, 'Terminal', '1792883265_Terminal_59494910-b8a0-400d-89d9-0176a6fcfc0d.jpg', 'Terminal de Riosucio Caldas - Cl. 11 #31. Servicio de 5:00 a. m. a 9:00 p. m. De aquí salen buses hacia Manizales, Bogotá, Supía, Pereira y Medellín. Conexiones intermunicipales e interdepartamentales.', '05:00', '21:00', '2026-10-03 21:27:48', '2026-11-03 23:45:54'),
+(10, 'Estanquillo', 5.4196380, -75.7027290, 'bus', '1793723996_WhatsApp Image 2026-11-03 at 11.32.58 AM.jpeg', 'Cra. 8,  De aquí salen buses hacia Bonafont y rutas veredales cercanas.', '06:00', '17:00', '2026-10-05 20:53:50', '2026-11-03 23:49:16'),
+(11, 'Reversadero de Buses', 5.4170925, -75.6846569, 'bus', '1793724921_WhatsApp Image 2026-11-03 at 11.52.58 AM.jpeg', 'Reversadero de buses. Aquí giran y salen los buses de Riosucio hacia Miraflores y Sipirra. Parada de paso, servicio desde las 6:15 a. m. o 6:30 a.m', '06:00', '18:00', '2026-10-05 21:05:31', '2026-11-03 23:51:29'),
+(12, 'La Molienda', 5.4228919, -75.7055965, 'Parada', '1793468387_la-milienda- 2026-10-31 at 12.36.28 PM.jpeg', 'Parada mixta: jeeps, mototaxis y buses hacia San Lorenzo,Pueblo Viejo y otras veredas cercanas.', '07:00', '19:00', '2026-10-05 21:20:51', '2026-11-03 23:53:10'),
+(13, 'Parada taxis', 5.4197430, -75.7019125, 'taxi', '1792880154_WhatsApp Image 2026-10-24 at 5.05.40 PM (1).jpeg', 'Parada de taxis, centro de Riosucio. Taxis disponibles para servicio urbano y veredal. Ubicado al costado de nuestra señora la Candelaria', '05:00', '22:00', '2026-10-15 21:37:14', '2026-11-03 23:55:22'),
+(14, 'ServiMoto Villamar', 5.4288030, -75.7016470, 'mototaxi', '1793728652_WhatsApp Image 2026-11-03 at 12.55.00 PM.jpeg', 'Cl. 19, Riosucio. Punto de mototaxis para servicio urbano y veredas cercanas.', '07:50', '17:00', '2026-10-15 21:53:05', '2026-11-03 23:56:40'),
+(16, 'Mototaxi pirata', 5.4277443, -75.7028037, 'pirata', '1793725767_WhatsApp Image 2026-11-03 at 12.08.41 PM.jpeg', 'Cerca del Hospital San Juan de Dios. Punto de transporte informal en moto para trayectos dentro de Riosucio y veredas cercanas. Verifica tarifa directamente en sitio', '07:00', '18:00', '2026-10-15 22:08:48', '2026-11-03 23:58:55'),
+(17, 'carros piratas', 5.4215181, -75.7048509, 'pirata', '1793726897_WhatsApp Image 2026-11-03 at 12.25.59 PM.jpeg', 'Punto de transporte informal nocturno en carro. Servicio para trayectos urbanos y veredales cuando no hay servicio de buses. Tarifa a convenir en sitio.', '19:00', '05:00', '2026-10-15 22:12:54', '2026-11-04 00:00:23'),
+(18, 'Parque San Sebastián', 5.4209300, -75.7039230, 'taxi', '1792880131_WhatsApp Image 2026-10-24 at 5.05.41 PM.jpeg', 'Parque San Sebastián, Riosucio Caldas. Parada de taxis con servicio urbano y veredal. Punto céntrico', '06:00', '19:00', '2026-10-17 21:05:27', '2026-11-04 00:02:03'),
+(19, 'Multiexpresingruma 2', 5.4186616, -75.7022630, 'mototaxi', '1793468633_WhatsApp Image 2026-10-31 at 12.43.05 PM.jpeg', 'Cra. 9, Riosucio Caldas. Sede de la empresa Multiexpres Ingruma. Punto de mototaxis con servicio urbano y veredal', '07:00', '19:00', '2026-10-18 19:51:37', '2026-11-04 00:03:16'),
+(20, 'Multiexpresingruma Oficina oro', 5.4216846, -75.7055141, 'mototaxi', '1793727537_WhatsApp Image 2026-11-03 at 12.36.30 PM.jpeg', 'Cl. 9 # 342, Riosucio, Caldas. Oficina Oro de Multiexpres Ingruma. Punto de mototaxis con servicio urbano y veredal.', '07:00', '19:00', '2026-10-18 19:57:20', '2026-11-04 00:04:27'),
+(21, 'Moto Sipirra', 5.4263440, -75.6907730, 'mototaxi', '1793725348_WhatsApp Image 2026-11-03 at 11.57.59 AM.jpeg', 'Corregimiento de Sipirra, Riosucio. Punto de mototaxis con servicio hacia veredas cercanas y hacia el casco urbano de Riosucio.', '06:00', '19:00', '2026-10-25 20:40:20', '2026-11-04 00:06:17'),
+(22, 'Parque La Candelaria Pirata', 5.4208890, -75.7020120, 'pirata', '1793726396_WhatsApp Image 2026-11-03 at 12.17.25 PM.jpeg', 'Parque La Candelaria, Riosucio. Punto de transporte informal en moto para trayectos cortos dentro del casco urbano.', '08:00', '17:00', '2026-10-25 20:54:36', '2026-11-04 00:07:25'),
+(23, 'mototaxi pirata', 5.4214800, -75.7014820, 'pirata', '1793729227_WhatsApp Image 2026-11-03 at 1.03.58 PM.jpeg', 'Cerca de la galería y zona comercial, Riosucio. Punto de transporte informal en moto, servicio para trayectos urbanos y veredales cortos', '20:00', '18:00', '2026-10-25 21:03:05', '2026-11-04 00:08:42');
 
 -- --------------------------------------------------------
 
@@ -310,7 +315,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('xt2hqe21S2YaZHLcOx3964SDgYFvVVtufrQ3MFs9', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiJuMVJrb0swNmc2cFM3bEFYMDZxckYwdVFCdVU1eHRHNnJueVJmNkgwIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9hcGlcL3BhcmFkYXMiLCJyb3V0ZSI6bnVsbH0sIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsImFkbWluX2lkIjoxLCJhZG1pbl9uYW1lIjoiU3VwZXIgQWRtaW4iLCJhZG1pbl9yb2xlIjoic3VwZXJfYWRtaW4ifQ==', 1793473687);
+('DlErSeODTEczi99qF9D3vbOqovgB2p1adzcNXRWO', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiJ4QzJmV1QwTlV5TGZRUFY1QW95N3NQaGRDc05nd2Z5OFJOVzZwWDYxIiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEsIl9mbGFzaCI6eyJvbGQiOltdLCJuZXciOltdfSwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9udW1lcm9zIiwicm91dGUiOm51bGx9LCJhZG1pbl9pZCI6MSwiYWRtaW5fbmFtZSI6IlN1cGVyIEFkbWluIiwiYWRtaW5fcm9sZSI6InN1cGVyX2FkbWluIn0=', 1793737536),
+('grEcVYt4rMkRTPNqiJVIUMVgD2q7fN2ZBYacFqhy', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36', 'eyJfdG9rZW4iOiJBYzl4WmFoZmh5QzVvamRadEE2cGRhNlVNeTUzd29UU0NwdXJxMlRUIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9sb2dpbiIsInJvdXRlIjoibG9naW4ifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MX0=', 1793723749);
 
 -- --------------------------------------------------------
 
@@ -519,7 +525,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -537,13 +543,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `numeros_contactos`
 --
 ALTER TABLE `numeros_contactos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `paradas`
 --
 ALTER TABLE `paradas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `parada_ruta`
