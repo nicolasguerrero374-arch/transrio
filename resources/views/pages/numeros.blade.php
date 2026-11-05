@@ -24,7 +24,7 @@
                     <small style="color:#666; text-transform:capitalize;">{{ $n->tipo }}</small><br>
                     <span style="font-size:15px; color:#0D47A1; font-weight:bold; letter-spacing:0.5px;">{{ $n->numero }}</span>
                 </div>
-                <a href="tel:{{ $n->telefono }}" style="background:#2E7D32; color:white; padding:10px 18px; border-radius:25px; text-decoration:none; font-weight:bold;">
+                <a href="tel:{{ $n->numero }}" style="background:#2E7D32; color:white; padding:10px 18px; border-radius:25px; text-decoration:none; font-weight:bold;">
                     Llamar
                 </a>
             </div>
