@@ -130,27 +130,32 @@ function mostrarParada(p) {
 }
 function cerrarModal() { document.getElementById('modalParada').classList.add('hidden'); }
 
+function sinTilde(texto) {
+  if (!texto) return "";
+  return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 function buscarDestino() {
-    let q = document.getElementById('buscadorDestino').value.toLowerCase().trim();
+    let qOriginal = document.getElementById('buscadorDestino').value.trim();
+    let q = sinTilde(qOriginal);
     if (!q) return;
 
-    // 1. Buscar en RUTAS primero (ej: Supia)
-    let rutaEncontrada = rutasDataGlobal.find(r => r.nombre.toLowerCase().includes(q) || (r.destino && r.destino.toLowerCase().includes(q)));
+    // 1. Buscar en RUTAS primero (ej: Supia, Bogota)
+    let rutaEncontrada = rutasDataGlobal.find(r => sinTilde(r.nombre).includes(q) || (r.destino && sinTilde(r.destino).includes(q)));
     if (rutaEncontrada && rutaEncontrada.coordenadas && rutaEncontrada.coordenadas.length) {
         map.fitBounds(rutaEncontrada.coordenadas);
-        document.getElementById('sugerencia').innerHTML = `Ruta encontrada: <b>${rutaEncontrada.nombre}</b>. Te sirve para ir a <b>${q}</b>`;
+        document.getElementById('sugerencia').innerHTML = `Ruta encontrada: <b>${rutaEncontrada.nombre}</b>. Te sirve para ir a <b>${qOriginal}</b>`;
         document.getElementById('sugerencia').classList.remove('hidden');
         return;
     }
 
     // 2. Buscar en PARADAS - AHORA CON TODAS LAS OPCIONES
     let encontrados = markers.filter(m =>
-        m.paradaData.nombre.toLowerCase().includes(q) ||
-        (m.paradaData.descripcion && m.paradaData.descripcion.toLowerCase().includes(q))
+        sinTilde(m.paradaData.nombre).includes(q) ||
+        (m.paradaData.descripcion && sinTilde(m.paradaData.descripcion).includes(q))
     );
 
     if (encontrados.length > 0) {
-
         let nombres = encontrados.map(m => m.paradaData.nombre);
         let textoParadas = '';
 
@@ -171,13 +176,13 @@ function buscarDestino() {
             map.fitBounds([[Math.min(...lats), Math.min(...lngs)], [Math.max(...lats), Math.max(...lngs)]]).setZoom(15);
         }
 
-        document.getElementById('sugerencia').innerHTML = `Dirígete al ${textoParadas}. Allí salen hacia <b>${q}</b>`;
+        document.getElementById('sugerencia').innerHTML = `Dirígete al ${textoParadas}. Allí salen hacia <b>${qOriginal}</b>`;
         document.getElementById('sugerencia').classList.remove('hidden');
         // Mostramos la primera por defecto en el modal
         mostrarParada(encontrados[0].paradaData);
         return;
     } else {
-        document.getElementById('sugerencia').innerHTML = `No encontramos rutas directas a  <b>${q}</b>. Te recomendamos ir al  <b>Terminal de Riosucio</b>. Allí te podran dar información de hacia donde vas.`;
+        document.getElementById('sugerencia').innerHTML = `No encontramos rutas directas a  <b>${qOriginal}</b>. Te recomendamos ir al  <b>Terminal de Riosucio</b>. Allí te podran dar información de hacia donde vas.`;
         document.getElementById('sugerencia').classList.remove('hidden');
     }
 }
