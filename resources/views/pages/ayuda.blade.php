@@ -19,7 +19,7 @@
   <div style="background:white; padding:20px; border-radius:12px; box-shadow:2px 3px rgba(0,0,0,0.1);margin-top:15px;">
     <p>Bienvenido a <b>TransRio</b> 🚐</p>
     <p>Usa el menú para ver el mapa, las paradas, rutas, horarios, tarifas y números por si tienes alguna emergencia.</p>
-    <p style="margin-top:20px;color:#666; font-size:13px;">Versión 1.0 - Hecho con ❤️ por Frank Nicolas Guerrero y Luisa</p>
+    <p style="margin-top:20px;color:#666; font-size:13px;">Versión 1.0 - Hecho con ❤️ por Frank Nicolas Guerrero y Luisa Fernanda Sossa</p>
   </div>
   <p style="margin-top:20px;">Soporte: <a href="mailto:admini@transrio.com">admini@transrio.com</a></p>
 </div>
